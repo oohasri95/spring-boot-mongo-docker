@@ -33,7 +33,7 @@ node{
 	 
       stage("Deploy To Kuberates Cluster"){
 	      
-        sh "export KUBECONFIG=/etc/kubernetes/admin.conf && kubectl create -f springBootMongo.yml"
+        sh "sudo export KUBECONFIG=/etc/kubernetes/admin.conf && kubectl create -f springBootMongo.yml"
 	
       }
      
