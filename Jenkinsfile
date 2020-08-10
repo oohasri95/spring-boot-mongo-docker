@@ -13,14 +13,14 @@ node{
     
     
     stage('Build Docker Image'){
-        sh 'sudo docker build -t maniengg/spring-boot-mongo .'
+	    sh "sudo docker build -t maniengg/spring-boot-mongo:${BUILD_ID} ."
     }
     
     stage('Push Docker Image'){
         withCredentials([string(credentialsId: 'DOKCER_HUB_PASSWORD', variable: 'DOKCER_HUB_PASSWORD')]) {
           sh "sudo docker login -u maniengg -p ${DOKCER_HUB_PASSWORD}"
         }
-        sh 'sudo docker push maniengg/spring-boot-mongo'
+        sh "sudo docker push maniengg/spring-boot-mongo:${BUILD_ID}"
      }
      
     /** stage("Deploy To Kuberates Cluster"){
@@ -32,6 +32,7 @@ node{
      }**/
 	 
       stage("Deploy To Kuberates Cluster"){
+	sh "sed -i -e 's,image_to_be_deployed,'maniengg/spring-boot-mongo:${BUILD_ID}',g' springBootMongo.yml"
 	      
         sh "export KUBECONFIG=/etc/kubernetes/admin.conf && kubectl apply -f springBootMongo.yml"
 	
