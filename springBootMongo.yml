@@ -1,6 +1,6 @@
 ---
 # Node Port Service
-apiVersion: v1
+apiVersion: apps/v1
 kind: Service
 metadata:
   labels:
@@ -44,7 +44,7 @@ spec:
          path: /tmp/dbbackup
 ---
 # Mongo Node Port RC
-apiVersion: v1
+apiVersion: apps/v1
 kind: Service
 metadata:
   labels:
