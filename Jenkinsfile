@@ -33,7 +33,7 @@ node{
 	 
       stage("Deploy To Kuberates Cluster"){
 	      
-        sh "whoami && kubectl create -f springBootMongo.yml"
+        sh "ls -lart /etc/kubernetes && kubectl create -f springBootMongo.yml"
 	
       }
      
