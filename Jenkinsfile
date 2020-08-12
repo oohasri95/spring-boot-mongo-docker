@@ -34,7 +34,7 @@ node{
       stage("Deploy To Kuberates Cluster"){
 	sh "sed -i -e 's,image_to_be_deployed,'maniengg/spring-boot-mongo:${BUILD_ID}',g' springBootMongo.yml"
 	      
-        sh "sudo kubectl create -f springBootMongo.yml"
+        sh "kubectl create -f springBootMongo.yml -v=8"
 	
       }
      
